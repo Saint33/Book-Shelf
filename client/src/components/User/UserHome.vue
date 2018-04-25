@@ -2,12 +2,11 @@
     <div >
     <div class="row">
         <div class="user_avatar">
-            <avatar class="avatar" src="https://i.imgflip.com/kpgof.jpg" :username="username"  :size="70" ></avatar>
+            <avatar class="avatar" :username="username"  :size="70" ></avatar>
             <span class="username">{{username}}</span>
-            <button @click="openDialog">start conversation</button>
-            <router-link class="message" :to="{name: 'Chat'}">
-                <icon name="envelope" scale="1.5" class="fa-icon " ></icon>
-            </router-link>
+            <span  @click="openDialog">
+                <icon name="envelope" scale="1.5" class="fa-icon message-icon"></icon>
+            </span>
         </div>
     </div>
     <div class="row usernav">
@@ -62,7 +61,7 @@
         >
 
             <router-view>
-        
+
             </router-view>
         </transition>
 
@@ -106,7 +105,7 @@ import Avatar from 'vue-avatar'
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" >
     @import "../../assets/scss/settings.scss";
     .user_nav__group {
         padding: 0;
@@ -142,7 +141,9 @@ import Avatar from 'vue-avatar'
         font-weight: 500;
     }
 
-    .message {
-        margin-left: 6px;
+    .message-icon {
+        cursor: pointer;
+        margin-left: 5px;
+        color: $main-color;
     }
 </style>

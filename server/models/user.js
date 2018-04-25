@@ -57,7 +57,8 @@ const userSchema = mongoose.Schema({
     },
     avatar: {
         type: String
-    }
+    },
+    bookChallenge: []
 }, {timestamps: true});
 
 userSchema.pre('save', function(next) {

@@ -85,6 +85,20 @@ app.get('/api/books', (req, res) => {
     });
 });
 
+app.get('/api/trendingbooks', (req, res) => {
+    Book.aggregate([{$project:{title: 1, author: 1, coverImage: 1, ysize:{$size:"$usersHaveRead"}}}, {$sort:{ysize: -1}}, {$limit: 5}]).exec((err, doc) => {
+        if(err) return res.status(400).send(err);
+        res.send(doc);
+    });
+})
+
+app.get('/api/newbooks', (req, res) => {
+    Book.find({}).sort({publishedDate:-1}).limit(5).exec((err, doc) => {
+        if(err) return res.status(400).send(err);
+        res.send(doc);
+    });
+})
+
 app.get('/api/getReviewer', (req, res) => {
     let id = req.query.id;
 

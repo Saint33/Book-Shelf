@@ -1,3 +1,8 @@
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+
+Vue.use(VueRouter);
+
 import BookView from './components/Book/BookView.vue'
 import AddBook from './components/Book/AddBook.vue'
 import AddReview from './components/Reviews/AddReview.vue'
@@ -13,8 +18,11 @@ import UserFavoriteBooks from './components/User/UserFavoriteBooks.vue'
 import Chats from './components/Chat/Chats.vue';
 import UserStatistics from './components/User/UserStatistics.vue';
 import UserQuotes from './components/User/UserQuotes.vue';
+import Books from './components/Pages/Books.vue'
 
-export const routes = [
+import { store } from './store/store';
+
+const routes = [
     { path: '/book/:id', component: BookView, name: 'book'},
     { path: '/add', component: AddBook, meta: { requiresAuth: true } },
     { path: '/add-review/:id', component: AddReview, name: 'AddReview', meta: { requiresAuth: true }},
@@ -30,5 +38,21 @@ export const routes = [
         { path: 'stats', component: UserStatistics, name: 'stats'},
         { path: 'edit-profile', component: UserEditProfile, name: 'editprofile'},
         { path: 'quotes', component: UserQuotes, name: 'userquotes'}
-    ]}
-]
+    ]},
+    { path: '/books', component: Books, name: 'books'}
+];
+
+export const router = new VueRouter({
+    mode: 'history',
+    routes
+});
+
+router.beforeEach((to, from, next) => {
+    store.dispatch('auth');
+    let userAuth = store.getters.auth;
+    let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+    if(requiresAuth && userAuth === false) next('login')
+    else if(!requiresAuth && userAuth === true) next()
+    else next();
+})

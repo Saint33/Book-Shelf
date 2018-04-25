@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueRouter from 'vue-router';
+
 import moment from 'moment';
 import 'vue-awesome/icons'
 
-import { routes } from './routes';
+import { router } from './routes';
 import { store } from './store/store';
 import VModal from 'vue-js-modal'
 
@@ -23,7 +23,7 @@ Vue.use(VueSocketio, 'http://localhost:3001');
 moment.locale('ru');
 
 Vue.use(BootstrapVue);
-Vue.use(VueRouter);
+
 Vue.config.productionTip = false
 
 Vue.filter('getFormattedDate', (value) => {
@@ -34,21 +34,6 @@ Vue.filter('getFormattedDate', (value) => {
 Vue.filter('getFomattedHTime',(value) => {
     if (!value) return ''
     return moment(value).format('HH:mm:ss')
-})
-
-export const router = new VueRouter({
-    mode: 'history',
-    routes
-})
-
-router.beforeEach((to, from, next) => {
-    store.dispatch('auth');
-    let userAuth = store.getters.auth;
-    let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-
-    if(requiresAuth && userAuth === false) next('login')
-    else if(!requiresAuth && userAuth === true) next()
-    else next();
 })
 
 new Vue({

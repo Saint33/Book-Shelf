@@ -25,10 +25,10 @@
             <div class="dropdown-content">
                 <ul class="dropdown-menu__group">
 
-                    <li><router-link :to="{name: 'user', params: {username: username}}" class="dropdown-menu__item">Профиль</router-link></li>
+                    <li><router-link :to="{name: 'profile', params: {username: username}}" class="dropdown-menu__item">Профиль</router-link></li>
                     <li><router-link :to="{name: 'read', params: {username: username}}" class="dropdown-menu__item">Прочитал</router-link></li>
                     <li><router-link :to="{name: 'wish', params: {username: username}}" class="dropdown-menu__item">Хочу прочитать</router-link></li>
-                    <li><router-link :to="{name: 'read'}" class="dropdown-menu__item">Избранное</router-link></li>
+                    <li><router-link :to="{name: 'favorite'}" class="dropdown-menu__item">Избранное</router-link></li>
                     <li><router-link :to="{name: 'read'}" class="dropdown-menu__item">Друзья</router-link></li>
                     <li class="dropdown-menu__item" @click="handleLogout">Выйти</li>
                     

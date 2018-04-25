@@ -60,7 +60,7 @@
 </script>
 
 <style lang="scss">
-        .review {
+    .review {
         padding: 20px;
         border: 1px solid #ccc;
         background: #fff;

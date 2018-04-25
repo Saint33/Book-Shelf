@@ -8,6 +8,7 @@
                 :bookTitle="review.bookInfo.title" 
             />
         </div>
+
     </div>
 </template>
 

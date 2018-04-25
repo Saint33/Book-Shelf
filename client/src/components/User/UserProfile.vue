@@ -8,7 +8,13 @@
             <div class="group__title">
     
                 <h2 class="group__title_item">Информация</h2>
-                <router-link :to="{name: 'editprofile'}"><icon name="pencil-alt" scale="1.5" class="fa-icon edit_profile"></icon></router-link>
+                <router-link 
+                    :to="{name: 'editprofile'}"
+                    v-if="currentUser"
+                >
+                    <icon name="pencil-alt" scale="1.5" class="fa-icon edit_profile">
+                    </icon>
+                </router-link>
     
             </div>
     
@@ -91,17 +97,19 @@
     import moment from 'moment';
     import Icon from 'vue-awesome/components/Icon'
     export default {
-    
         data() {
-    
             return {
             }
-    
         },
         components: {
             Icon
         },
-
+        beforeRouteEnter: (to, from, next) => {
+            console.log(to, from)
+            if(from.params.username !== to.params.username){
+                next(`/user/${to.params.username}`)
+            } else next();
+        },
         computed: {
             read(){
                 return this.$store.state.userPageBooks.haveRead;
@@ -111,6 +119,9 @@
             },
             user(){
                 return this.$store.state.userPage;
+            },
+            currentUser(){
+                return this.$store.state.user.id === this.$store.state.userPage._id;
             }
         },
     

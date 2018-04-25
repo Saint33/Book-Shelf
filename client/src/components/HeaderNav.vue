@@ -1,7 +1,7 @@
 <template>
         <div class="row Header__nav">
         <ul class="Header__nav__link_group">
-            <li class="Header__nav__link">Книги</li>
+            <router-link tag="li" class="Header__nav__link" to="/books">Книги</router-link>
             <li class="Header__nav__link">Жанры</li>
             <li class="Header__nav__link">Авторы</li>
             <li class="Header__nav__link">Рецензии</li>
