@@ -30,6 +30,7 @@
                     <li><router-link :to="{name: 'wish', params: {username: username}}" class="dropdown-menu__item">Хочу прочитать</router-link></li>
                     <li><router-link :to="{name: 'favorite'}" class="dropdown-menu__item">Избранное</router-link></li>
                     <li><router-link :to="{name: 'read'}" class="dropdown-menu__item">Друзья</router-link></li>
+                    <li><router-link :to="{name: 'addBook'}" class="dropdown-menu__item">Добавить книгу</router-link></li>
                     <li class="dropdown-menu__item" @click="handleLogout">Выйти</li>
                     
                 </ul>

@@ -25,24 +25,12 @@ io.on('connection', function(socket){
 
     socket.on('join', (room, callback) => {
         socket.join(room);
-        console.log('joined', room)
-        // console.log(Object.keys( io.sockets.adapter.sids[socket.id] ).filter(item => item!=socket.id))
-        // socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
-        // socket.broadcast.to(room).emit('newMessage', generateMessage('Admin', 'New user joined'));
     })
 
     socket.on('createMessage', (message, cb) => {
         let room = Object.keys( io.sockets.adapter.sids[socket.id] ).filter(item => item!=socket.id);
-        // io.to(room).emit('newMessage', generateMessage(message.from, message.text));
         socket.broadcast.to(room).emit('newMessage', generateMessage(message.body, message.authorUsername, message.createdAt, message.id));
-        // cb('This is from the server');
-        // socket.broadcast.emit('newMessage', {
-        //     from: message.from,
-        //     text: message.text,
-        //     createdAt: new Date().getTime()
-        // })
     })
-
 
     socket.on('disconnect', () => {
         
@@ -50,12 +38,9 @@ io.on('connection', function(socket){
 
   });
 
-
-  // #############################################################################################
   
 app.use(bodyParser.json());
 app.use(cookieParser());
-
 app.use(express.static('client/build'));
 
 app.get('/api/getBook', (req, res) => {

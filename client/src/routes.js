@@ -24,7 +24,7 @@ import { store } from './store/store';
 
 const routes = [
     { path: '/book/:id', component: BookView, name: 'book'},
-    { path: '/add', component: AddBook, meta: { requiresAuth: true } },
+    { path: '/add', component: AddBook, name: 'addBook', meta: { requiresAuth: true } },
     { path: '/add-review/:id', component: AddReview, name: 'AddReview', meta: { requiresAuth: true }},
     { path: '/add-quote/:id', component: AddQuote, name: 'AddQuote', meta: { requiresAuth: true }},
     { path: '/', component: Home, name: 'Home'},
