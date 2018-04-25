@@ -24,6 +24,7 @@ export const user = {
     actions: {
         login({commit}, {email, password}){
             axios.post('/api/login', {email, password})
+            console.log(response)
                 .then(response => {
                     commit('userLogin', response.data)
                 }).catch(error => {
