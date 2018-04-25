@@ -19,7 +19,7 @@ Vue.use(Vuebar)
 import VueChatScroll from 'vue-chat-scroll'
 Vue.use(VueChatScroll)
 import VueSocketio from 'vue-socket.io';
-Vue.use(VueSocketio, 'http://localhost:3001');
+Vue.use(VueSocketio, 'https://murmuring-everglades-58247.herokuapp.com');
 moment.locale('ru');
 
 Vue.use(BootstrapVue);
