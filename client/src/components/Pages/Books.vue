@@ -45,9 +45,9 @@
             }
         },
         created(){
-            axios.get('/api/trendingbooks')
+            axios.get('/api/book/trending')
                 .then(response => this.popularBooks = response.data);
-            axios.get('/api/newbooks')
+            axios.get('/api/book/new')
                 .then(response => this.newBooks = response.data)
             
         }
@@ -64,6 +64,11 @@
         width: auto;
         cursor: pointer;
         margin: 10px;
+        transition: transform .2s;
+    }
+
+    .books__popular-item__image:hover {
+        transform: scale(1.2);
     }
 
     .books__popular_title {

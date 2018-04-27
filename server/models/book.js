@@ -51,6 +51,7 @@ const bookSchema = mongoose.Schema({
     category: {
         type: String
     },
+    genres: [],
     reviews: [],
     quotes: [],
     series: {

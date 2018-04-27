@@ -57,15 +57,15 @@ export const store = new Vuex.Store({
                     commit('getPageOwner', response.data[0])
 
                     response.data[0].haveRead.map(book => {
-                        
-                        axios.get(`/api/getBook?id=${book.bookId}`)
+            
+                        axios.get(`/api/book?id=${book.bookId}`)
                 
                             .then(response => commit('getUserBooksRead', response.data))
                 
                     })
                     response.data[0].wantToRead.map(book => {
 
-                        axios.get(`/api/getBook?id=${book}`)
+                        axios.get(`/api/book?id=${book}`)
                 
                             .then(response => commit('getUserBooksWantToRead', response.data))
                 
@@ -73,15 +73,16 @@ export const store = new Vuex.Store({
                     
                     response.data[0].favoriteBooks.map(book => {
 
-                        axios.get(`/api/getBook?id=${book}`)
+                        axios.get(`/api/book?id=${book}`)
                 
                             .then(response => commit('getUserFavoriteBooks', response.data))
                 
                     })
-                    axios.get(`/api/user-quotes?username=${username}`)
+                    axios.get(`/api/user/quotes?username=${username}`)
                         .then(response => {
-                            console.log(response)
+
                             commit('getUserQuotes', response.data)
+
                         })
                 })
         }

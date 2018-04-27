@@ -1,7 +1,7 @@
 <template>
     <div class="col-3" v-if="conversations">
             <div @click="handleCurrentConversation(conversation.id)" class="dialog__item" v-for="conversation in conversations" :conversation="conversation" :key="conversation._id">
-                <span class="dialog__recipient">{{conversation.recipient.username}}</span>
+                <span class="dialog__recipient">username</span>
                 <span class="dialog__message">{{conversation.messages[0].body}}</span>
             </div>
     </div>
@@ -12,7 +12,7 @@
     import { mapMutations} from 'vuex';
 
     export default {
-        props: ['conversations'],
+        props: ['conversations','userId'],
         methods:{
             ...mapMutations(['handleCurrentConversation'])
         }

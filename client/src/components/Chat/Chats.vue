@@ -2,7 +2,7 @@
     <div >
         <clip-loader v-if="loading" :color="color" :size="size"></clip-loader>
         <div class="row" v-else>
-            <DialogList :conversations="conversations" @handleCurrentView="handleCurrentView" />
+            <DialogList :userId="userId" :conversations="conversations" @handleCurrentView="handleCurrentView" />
             <keep-alive>
                     <Dialog 
                         v-if="currentConversation(conversation.id)" 

@@ -24,11 +24,11 @@
             }
         },
         created(){
-            axios.get('/api/reviews')
+            axios.get('/api/review/reviews')
                 .then(response => {
                     this.latestReviews = response.data;
                     this.latestReviews.map((review, i) => {
-                        axios.get(`/api/getBook?id=${review.bookId}`)
+                        axios.get(`/api/book?id=${review.bookId}`)
                             .then(response => {
                                 review = Object.assign({bookInfo: response.data}, review);
                                 this.latestReviews[i] = review;

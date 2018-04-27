@@ -19,8 +19,9 @@ const reviewSchema = mongoose.Schema({
         type: String
     },
     reviewerRating: {
-        
-    }
+    },
+    usersLiked: [],
+    usersFavorited: []
 }, {timestamps: true});
 
 const Review = mongoose.model('Review', reviewSchema);

@@ -9,7 +9,7 @@
                         @focus="onEditorFocus($event)"
                         @ready="onEditorReady($event)"
                         class="editor"
-                        >
+        >
                         
         </quill-editor>
             <button 

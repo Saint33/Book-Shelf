@@ -19,7 +19,7 @@ Vue.use(Vuebar)
 import VueChatScroll from 'vue-chat-scroll'
 Vue.use(VueChatScroll)
 import VueSocketio from 'vue-socket.io';
-Vue.use(VueSocketio, 'https://murmuring-everglades-58247.herokuapp.com');
+Vue.use(VueSocketio, 'http://localhost:3001');
 moment.locale('ru');
 
 Vue.use(BootstrapVue);
@@ -34,6 +34,15 @@ Vue.filter('getFormattedDate', (value) => {
 Vue.filter('getFomattedHTime',(value) => {
     if (!value) return ''
     return moment(value).format('HH:mm:ss')
+})
+
+Vue.filter('getFormattedLanguage', (value) => {
+    if (!value) return ''
+    if(value === 'ru'){
+        return 'Русский'
+    } else if(value === 'en'){
+        return 'Английский'
+    }
 })
 
 new Vue({

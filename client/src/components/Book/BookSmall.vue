@@ -1,7 +1,12 @@
 <template>
     <div class="row book">
         <div class="col-3 ">
-            <img :src="book.coverImage" class="book_cover"/>
+            <router-link 
+                tag="img"
+                :to="{name: 'book', params: { id: book._id }}"
+                :src="book.coverImage" 
+                class="book_cover"
+            ></router-link>
             <span class="book__read_part_button">Прочитал</span>
             <div class="book__rating">  
                 <star-rating 
@@ -44,7 +49,7 @@
                 <div><b>Год издания:</b><span class="book__edition_data__value">{{book.publishedDate}}</span></div>
                 <div><b>Издательство:</b><span class="book__edition_data__value">{{book.publisher}}</span></div>
                 <div v-if="book.series"><b>Серия:</b><span class="book__edition_data__value">{{book.series}}</span></div>
-                <div><b>Язык:</b><span class="book__edition_data__value">{{book.language}}</span></div>
+                <div><b>Язык:</b><span class="book__edition_data__value">{{book.language | getFormattedLanguage}}</span></div>
             </div>
                 <p class="book__description">{{book.description}}</p>
             </div>

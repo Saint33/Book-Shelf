@@ -5,7 +5,6 @@
             tag="li"
             to="/" 
             class="Header__title"
-            @mouseover="animate"
         >Book Shelf</router-link>
         <input 
             type="text" 
@@ -14,7 +13,10 @@
             @keyup="handleQuery"
             class="Header__input"
         />
-
+        <span class="add_book">
+        <router-link :to="{name: 'addBook'}" class="dropdown-menu__item"><icon name="plus" scale="1.3" ></icon></router-link>
+            
+        </span>
         <SearchResults v-if="queryBooks.length>0" :books="queryBooks"/>
         <div class="user">
         <div v-if="username" class="dropdown" >
@@ -62,6 +64,7 @@
     import Register from './Register.vue'
     import Avatar from 'vue-avatar'
     import axios from 'axios'
+    import Icon from 'vue-awesome/components/Icon'
     export default {
         data(){
             return{
@@ -78,9 +81,6 @@
             }
         },
         methods: {
-            animate(){
-                console.log('animating')
-            },
             show () {
                 this.$modal.show('hello-world');
             },
@@ -102,7 +102,7 @@
                 }, 1000)
             },
             handleQuery(){
-                axios.get(`/api/booksnauthors?query=${this.query}`)
+                axios.get(`/api/book/queryBook?query=${this.query}`)
                     .then(response=> {
                         this.queryBooks = response.data
                     })
@@ -112,13 +112,17 @@
             Avatar,
             Login,
             Register,
-            SearchResults
+            SearchResults,
+            Icon
         }
     }
 </script>
 
 <style lang="scss">
     @import "../assets/scss/settings.scss";
+    .add_book{
+        margin-top: 15px;
+    }
     .dropdown {
         position: relative;
         display: inline-block;
@@ -182,7 +186,7 @@
         width: 500px;
         border-radius: 12px;
         padding: 5px;
-        margin: auto;
+       
     }
 
     .Header__input:focus{

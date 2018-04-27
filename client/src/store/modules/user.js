@@ -23,25 +23,26 @@ export const user = {
     },
     actions: {
         login({commit}, {email, password}){
-            axios.post('/api/login', {email, password})
-            console.log(response)
+            axios.post('/api/auth/login', {email, password})
+            
                 .then(response => {
+                    console.log(response)
                     commit('userLogin', response.data)
                 }).catch(error => {
                     commit('userLoginFailed', error.response.data)
                 })
         },
         logout({commit}){
-            axios.get('/api/logout')
+            axios.get('/api/auth/logout')
         },
         register({commit}, payload){
-            axios.post('/api/register', payload)
+            axios.post('/api/auth/register', payload)
                 .then( response => {
                     commit('userLogin', response.data)
                 })
         },
         auth({commit}){
-            axios.get('/api/auth')
+            axios.get('/api/auth/auth')
                 .then(response => {
                     if(!response.data.error){
                         commit('userLogin', response.data)

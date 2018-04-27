@@ -28,14 +28,14 @@
         <div class="review__icon_group">
             <span class="align-baseline">
                 <icon name="thumbs-up" scale="1.5" class="fa-icon fa-icon__like"></icon> 
-                66
+                {{review.usersLiked.length}}
             </span>
             <span class="align-baseline"> 
-                <icon name="heart" scale="1.5" class="fa-icon fa-icon__heart"></icon> 
-                5
+                <icon name="heart" scale="1.5" class="fa-icon fa-icon__heart" @click="likeReview"></icon> 
+                {{review.usersFavorited.length}}
             </span>
             <span class="align-baseline"> 
-                <icon name="comment" scale="1.5" class="fa-icon"></icon> 
+                <icon name="comment" scale="1.5" class="fa-icon" @click="favoriteReview"></icon> 
                 11
             </span>
             <span class="fa-icon__views_row"> 
@@ -51,10 +51,21 @@
     import Icon from 'vue-awesome/components/Icon'
 
     export default {
+        data:{
+
+        },
         props: ['review', 'bookCover', 'bookTitle'],
         components: {
             StarRating,
             Icon
+        },
+        methods:{
+            likeReview(){
+
+            },
+            favoriteReview(){
+
+            }
         }
     }
 </script>

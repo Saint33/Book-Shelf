@@ -88,7 +88,7 @@
             },
             getMessages(limit=10, skip=0, order='desc', conversationId){
                 console.log('getting messages', conversationId)
-                axios.get(`/api/messages?limit=${limit}&skip=${skip}&order=${order}&id=${conversationId}`)
+                axios.get(`/api/chat/messages?limit=${limit}&skip=${skip}&order=${order}&id=${conversationId}`)
                     .then(response => {
                         
                         this.messages = this.messages.concat(response.data.reverse())
@@ -98,7 +98,7 @@
             loadMoreMessages(){
                 let skip = this.messages.length;
 
-                axios.get(`/api/messages?limit=10&skip=${skip}&order=desc&id=${this.conversation.id}`)
+                axios.get(`/api/chat/messages?limit=10&skip=${skip}&order=desc&id=${this.conversation.id}`)
                     .then(response => {
                         this.messages = response.data.reverse().concat(this.messages);
                         })

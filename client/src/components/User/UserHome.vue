@@ -55,7 +55,7 @@
         <div class="col-8">
 
         <transition
-              name="bounce"
+                name="bounce"
                 enter-active-class="bounceInLeft"
                 leave-active-class="bounceOutRight"
         >

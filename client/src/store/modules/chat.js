@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { router } from '../../main';
+import { router } from '../../routes';
 
 export const chat = {
     state: {
@@ -48,7 +48,7 @@ export const chat = {
     },
     actions: {
         getUserConversations({ commit, dispatch }, userId ){
-            axios.get(`/api/getconversations?id=${userId}`)
+            axios.get(`/api/chat/conversations?id=${userId}`)
                 .then(response => {
                     commit('userConversations', response.data);
                     let recipients = response.data.conversations.map(conversation => {
@@ -65,7 +65,7 @@ export const chat = {
         },
         getRecipientsInfo({ commit }, recipients){
             recipients.map((recipient, i) => {
-                axios.get(`/api/getReviewer?id=${recipient}`)
+                axios.get(`/api/user/info?id=${recipient}`)
                     .then(response => {
                         commit('receiveRecipientInfo', response.data)
                         if(i === recipients.length - 1){
@@ -75,13 +75,14 @@ export const chat = {
             })
         },
         startConversation({commit},{userId, recipientId}){
-            axios.get(`/api/getconversation?user=${userId}&recipent=${recipientId}`)
+            axios.get(`/api/chat/conversation?user=${userId}&recipent=${recipientId}`)
                 .then(response => {
+                    console.log(response);
                     commit('handleCurrentConversation', response.data[0]._id)
-                    router.push({ name: 'Chat'})
+                    router.push('/chat')
                 })
                 .catch(error => {
-                    axios.post('/api/conversation', {userId, recipientId})
+                    axios.post('/api/chat/conversation', {userId, recipientId})
                         .then(response => {
                             commit('handleCurrentConversation', response.data.newConversation._id)
                         })
